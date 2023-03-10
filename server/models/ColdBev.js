@@ -1,5 +1,5 @@
 
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const coldBevSchema = new Schema({
   name: {
@@ -14,6 +14,9 @@ const coldBevSchema = new Schema({
     type: Number,
     required: true,
   },
+  points: {
+    type: Number
+  }
 });
 
 const coldBev = mongoose.model('coldBev', coldBevSchema);
