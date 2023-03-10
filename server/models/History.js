@@ -1,11 +1,11 @@
 const {Schema,model} = required('mongoose');
 
 const historySchema = new Schema({
-   items:{
+   items:[{
     type: String,
     required: true,
 
-   },
+   }],
    total:{
     type: Number,
     required:true
