@@ -1,9 +1,12 @@
 import "./App.css";
-import MenuPage from "./pages/MenuPage";
-
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
-  return <div className="App">Hello world</div>;
+  return (
+    <ChakraProvider>
+      <div className="App">Hello world</div>
+    </ChakraProvider>
+  );
 }
 
 export default App;
