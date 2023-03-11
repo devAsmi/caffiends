@@ -24,7 +24,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    itemTypes: [ItemType]
+    items: [Item]
   }
 `;
 

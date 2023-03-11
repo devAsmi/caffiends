@@ -1,5 +1,6 @@
 // Define Mongoose
 const { Schema, model } = require("mongoose");
+const History = require("./History");
 
 const userSchema = new Schema({
   userId: {
@@ -19,7 +20,7 @@ const userSchema = new Schema({
     required: true,
   },
   points: Number,
-  orderHistory: [History],
+  orderHistory: [History.schema],
 });
 
 const User = model("User", userSchema);
