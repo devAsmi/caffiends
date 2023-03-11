@@ -3,7 +3,13 @@ const Item = require("./Item");
 const { Schema, model } = required("mongoose");
 
 const historySchema = new Schema({
-  items: [Item],
+
+   items:[{
+    type: String,
+    required: true,
+
+   }],
+
   total: {
     type: Number,
     required: true,
@@ -12,6 +18,7 @@ const historySchema = new Schema({
     type: Schema.Types.ObjectId,
   },
   points: {
+
     type: Number,
   },
 });
