@@ -1,12 +1,31 @@
-const {gql}= require('appollo');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type ItemType {
+    _id: ID
+    name: String
+  }
 
-type History {
-    history_id: ID 
-    items:[Items]
+  type Item {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    price: Float
+    points: Int
+    itemType: ItemType
+  }
+
+  type History {
+    history_id: ID
+    items: [Item]
     total: Int
     points: Int
-}`
+  }
 
-type Items
+  type Query {
+    itemTypes: [ItemType]
+  }
+`;
+
+module.exports = typeDefs;

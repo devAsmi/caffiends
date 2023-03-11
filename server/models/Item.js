@@ -20,7 +20,8 @@ const MenuItem = new Schema({
     type: Number,
   },
   itemType: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "ItemType",
     required: true,
   },
 });
