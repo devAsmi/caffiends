@@ -1,6 +1,11 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type ItemType {
+    _id: ID
+    name: String
+  }
+
   type Item {
     _id: ID
     name: String
@@ -13,9 +18,13 @@ const typeDefs = gql`
 
   type History {
     history_id: ID
-    items: [Items]
+    items: [Item]
     total: Int
     points: Int
+  }
+
+  type Query {
+    itemTypes: [ItemType]
   }
 `;
 

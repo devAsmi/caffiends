@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
 
 const ItemTypeSchema = new Schema({
   name: {
@@ -10,6 +8,6 @@ const ItemTypeSchema = new Schema({
   },
 });
 
-const ItemType = mongoose.model("ItemType", ItemTypeSchema);
+const ItemType = model("ItemType", ItemTypeSchema);
 
 module.exports = ItemType;
