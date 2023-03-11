@@ -1,14 +1,12 @@
 const { Schema, model } = required("mongoose");
 
 const historySchema = new Schema({
-  items: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+   items:[{
+    type: String,
+    required: true,
 
-  total: {
+   }],
+   total:{
     type: Number,
     required: true,
   },
