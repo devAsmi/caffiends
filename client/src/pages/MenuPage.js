@@ -1,96 +1,64 @@
-import React from "react";
-import MenuItem from "../components/MenuItem";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Link as ReactLink } from "react-router-dom";
 
-const mockMenu = [
-  {
-    name: "Ice coffee",
-    description: "This is a cold fantastic ice coffee",
-    price: 2.99,
-    points: 240,
-    image:
-      "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
-    itemType: "ColdBev",
-  },
-  {
-    name: "Ice macchicato",
-    description: "This is a cold fantastic iced macchiato",
-    price: 3.99,
-    points: 340,
-    image: "https://unsplash.com/photos/QxfXv6v22lA",
-    itemType: "ColdBev",
-  },
-  
-  {
-    name: "Ice coffee",
-    description: "This is a cold fantastic ice coffee",
-    price: 2.99,
-    points: 240,
-    image:
-      "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
-    itemType: "ColdBev",
-  },
-  
-  {
-    name: "Ice coffee",
-    description: "This is a cold fantastic ice coffee",
-    price: 2.99,
-    points: 240,
-    image:
-      "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
-    itemType: "ColdBev",
-  },
-  {
-    name: "Hot coffee",
-    description: "This is a hot fantastic coffee",
-    price: 2.99,
-    points: 240,
-    image:
-      "https://images.unsplash.com/photo-1547583881-58685cb3210f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80",
-    itemType: "HotBev",
-  },
-  {
-    name: "Sandwich",
-    description: "Sandwich with turkey and cheese",
-    price: 8.99,
-    points: 700,
-    image:
-      "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1746&q=80",
-    itemType: "Food",
-  },
-];
+import { QUERY_ITEMS } from "../utils/queries";
+import MenuItemSection from "../components/MenuItemSection";
 
 export default function MenuPage() {
-  const coldBeverages = mockMenu.filter((item) => item.itemType === "ColdBev");
-  const hotBeverages = mockMenu.filter((item) => item.itemType === "HotBev");
-  const foodItems = mockMenu.filter((item) => item.itemType === "Food");
+  const { data, loading } = useQuery(QUERY_ITEMS);
+  let menuItems = [];
+  let coldBeverages = [];
+  let hotBeverages = [];
+  let foodItems = [];
+
+  if (loading) {
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
+  }
+
+  if (data) {
+    menuItems = [...data.items];
+    coldBeverages = menuItems
+      .filter((item) => item.itemType.name === "Cold Beverages")
+      .slice(0, 3);
+    hotBeverages = menuItems
+      .filter((item) => item.itemType.name === "Hot Beverages")
+      .slice(0, 3);
+    foodItems = menuItems
+      .filter((item) => item.itemType.name === "Food")
+      .slice(0, 3);
+  }
 
   return (
-    <div>
-      <h2>Menu</h2>
-      <div>
-        <h3>Cold Beverages</h3>
-        <div className="menu-item-container">
-          {coldBeverages.map((coldBeverage) => (
-            <MenuItem key={coldBeverage.name} item={coldBeverage} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3>Hot Beverages</h3>
-        <div className="menu-item-container">
-          {hotBeverages.map((hotBeverage) => (
-            <MenuItem key={hotBeverage.name} item={hotBeverage} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3>Food</h3>
-        <div className="menu-item-container">
-          {foodItems.map((food) => (
-            <MenuItem key={food.name} item={food} />
-          ))}
-        </div>
-      </div>
-    </div>
+    <Flex direction="column" gap="8" padding="4">
+      <Text fontSize="6xl">Menu</Text>
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Cold Beverages" items={coldBeverages} />
+        <Link as={ReactLink} to="/coldbev">
+          View more..
+        </Link>
+      </Flex>
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Hot Beverages" items={hotBeverages} />
+        <Link as={ReactLink} to="/hotbev">
+          View more..
+        </Link>
+      </Flex>
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Food" items={foodItems} />
+        <Link as={ReactLink} to="/food">
+          View more..
+        </Link>
+      </Flex>
+    </Flex>
   );
 }
