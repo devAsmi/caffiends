@@ -1,6 +1,7 @@
 const db = require("../config/connection");
 
 const { Item, ItemType } = require("../models");
+const createFoodItems = require("./FoodItems");
 
 db.once("open", async () => {
   await ItemType.deleteMany();
@@ -40,15 +41,7 @@ db.once("open", async () => {
       points: 200,
       itemType: ItemTypes[1]._id,
     },
-    {
-      name: "Turkey Panini",
-      description: "A delightful Turkey and cheese Panini",
-      image:
-        "https://images.unsplash.com/photo-1611675674726-062332b48623?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      price: 8.99,
-      points: 700,
-      itemType: ItemTypes[2]._id,
-    },
+    ...createFoodItems(ItemTypes[2]._id),
   ]);
   console.log("Items seeded");
 
