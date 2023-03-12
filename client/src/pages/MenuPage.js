@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Spinner } from "@chakra-ui/react";
+import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 
 import MenuItem from "../components/MenuItem";
 import { QUERY_ITEMS } from "../utils/queries";
+import MenuItemSection from "../components/MenuItemSection";
 
 export default function MenuPage() {
   const { data, loading } = useQuery(QUERY_ITEMS);
@@ -38,32 +39,11 @@ export default function MenuPage() {
   }
 
   return (
-    <div>
-      <h2>Menu</h2>
-      <div>
-        <h3>Cold Beverages</h3>
-        <div className="menu-item-container">
-          {coldBeverages.map((coldBeverage) => (
-            <MenuItem key={coldBeverage.name} item={coldBeverage} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3>Hot Beverages</h3>
-        <div className="menu-item-container">
-          {hotBeverages.map((hotBeverage) => (
-            <MenuItem key={hotBeverage.name} item={hotBeverage} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3>Food</h3>
-        <div className="menu-item-container">
-          {foodItems.map((food) => (
-            <MenuItem key={food.name} item={food} />
-          ))}
-        </div>
-      </div>
-    </div>
+    <Flex direction="column" gap="8" padding="4">
+      <Text fontSize="6xl">Menu</Text>
+      <MenuItemSection name="Cold Beverages" items={coldBeverages} />
+      <MenuItemSection name="Hot Beverages" items={hotBeverages} />
+      <MenuItemSection name="Food" items={foodItems} />
+    </Flex>
   );
 }
