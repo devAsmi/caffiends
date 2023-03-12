@@ -20,6 +20,7 @@ import MenuPage from "../src/pages/MenuPage";
 import Registration from "./pages/Registration ";
 import UserInfo from "../src/pages/UserInfo";
 import Homepage from "./pages/Homepage";
+import { Flex } from "@chakra-ui/react";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,8 +44,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
-        <Router>
+      <Router>
+        <Flex direction="column" height="100%">
           <Navbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
@@ -57,9 +58,9 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/user" element={<UserInfo />} />
           </Routes>
-        </Router>
-        <Footer />
-      </div>
+          <Footer />
+        </Flex>
+      </Router>
     </ApolloProvider>
   );
 }
