@@ -20,6 +20,7 @@ import MenuPage from "../src/pages/MenuPage";
 import Registration from "./pages/Registration ";
 import UserInfo from "../src/pages/UserInfo";
 import Homepage from "./pages/Homepage";
+import Login from "./components/Login";
 import { Flex } from "@chakra-ui/react";
 
 const httpLink = createHttpLink({
