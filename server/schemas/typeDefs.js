@@ -25,6 +25,7 @@ const typeDefs = gql`
 
   type Query {
     items: [Item]
+    itemsForType(itemType: String): [Item]
   }
 `;
 

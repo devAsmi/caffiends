@@ -13,16 +13,16 @@ import {
 
 export default function MenuItem({ item }) {
   return (
-    <Card maxW="md" size={"md"}>
+    <Card maxW="sm" size={"sm"}>
       <CardBody>
         <Image
-          objectFit="contain"
+          objectFit="fill"
           boxSize="300px"
           src={item.image}
           alt={`${item.name}-image`}
           borderRadius="lg"
         />
-        <Stack mt="6" spacing="3">
+        <Stack mt="6" spacing="3" width="300px">
           <Heading size="md">{item.name}</Heading>
           <Text>{item.description}</Text>
           <Flex justifyContent="space-between" alignItems="center" gap="2">

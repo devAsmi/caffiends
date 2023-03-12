@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Link as ReactLink } from "react-router-dom";
 
-import MenuItem from "../components/MenuItem";
 import { QUERY_ITEMS } from "../utils/queries";
 import MenuItemSection from "../components/MenuItemSection";
 
@@ -27,23 +27,38 @@ export default function MenuPage() {
 
   if (data) {
     menuItems = [...data.items];
-    coldBeverages = menuItems.filter(
-      (item) => item.itemType.name === "Cold Beverages"
-    );
-    hotBeverages = menuItems.filter(
-      (item) => item.itemType.name === "Hot Beverages"
-    );
-    foodItems = menuItems.filter((item) => item.itemType.name === "Food");
-    console.log(menuItems);
-    console.log(coldBeverages);
+    coldBeverages = menuItems
+      .filter((item) => item.itemType.name === "Cold Beverages")
+      .slice(0, 3);
+    hotBeverages = menuItems
+      .filter((item) => item.itemType.name === "Hot Beverages")
+      .slice(0, 3);
+    foodItems = menuItems
+      .filter((item) => item.itemType.name === "Food")
+      .slice(0, 3);
   }
 
   return (
     <Flex direction="column" gap="8" padding="4">
       <Text fontSize="6xl">Menu</Text>
-      <MenuItemSection name="Cold Beverages" items={coldBeverages} />
-      <MenuItemSection name="Hot Beverages" items={hotBeverages} />
-      <MenuItemSection name="Food" items={foodItems} />
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Cold Beverages" items={coldBeverages} />
+        <Link as={ReactLink} to="/coldbev">
+          View more..
+        </Link>
+      </Flex>
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Hot Beverages" items={hotBeverages} />
+        <Link as={ReactLink} to="/hotbev">
+          View more..
+        </Link>
+      </Flex>
+      <Flex alignItems="center" gap="8">
+        <MenuItemSection name="Food" items={foodItems} />
+        <Link as={ReactLink} to="/food">
+          View more..
+        </Link>
+      </Flex>
     </Flex>
   );
 }
