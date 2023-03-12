@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
+import { Spinner } from "@chakra-ui/react";
 
 import MenuItem from "../components/MenuItem";
 import { QUERY_ITEMS } from "../utils/queries";
@@ -12,7 +13,15 @@ export default function MenuPage() {
   let foodItems = [];
 
   if (loading) {
-    return <h2>Loading....</h2>;
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
   }
 
   if (data) {
