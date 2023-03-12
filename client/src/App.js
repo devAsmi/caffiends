@@ -13,7 +13,7 @@ import MenuPage from "../src/pages/MenuPage";
 import Registration from "./pages/Registration ";
 import UserInfo from "../src/pages/UserInfo";
 import Homepage from "./pages/Homepage";
-
+import Login from "./components/Login";
 function App() {
   return (
     <div>
@@ -29,6 +29,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/user" element={<UserInfo />} />
+          <Route path ="/Login" element = {<Login />}/>
         </Routes>
       </Router>
       <Footer />
