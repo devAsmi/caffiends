@@ -16,3 +16,20 @@ export const QUERY_ITEMS = gql`
     }
   }
 `;
+
+export const QUERY_ITEMS_FOR_TYPE = gql`
+  query getItemsForType($itemType: String) {
+    itemsForType(itemType: $itemType) {
+      price
+      points
+      name
+      itemType {
+        name
+        _id
+      }
+      _id
+      description
+      image
+    }
+  }
+`;
