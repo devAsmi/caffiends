@@ -1,5 +1,6 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 
 export default function Navbar() {
-  return <div>Navbar</div>;
+  return <Flex height="100px">Navbar</Flex>;
 }
