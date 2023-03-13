@@ -24,6 +24,7 @@ import Login from "./components/Login";
 import { Flex } from "@chakra-ui/react";
 import { CartProvider } from "./utils/GlobalState";
 import CartDrawer from "./components/CartDrawer";
+import Cart from "./components/Cart";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -54,6 +55,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/coldbev" element={<ColdBevs />} />
               <Route path="/food" element={<Food />} />
               <Route path="/hotbev" element={<HotBevs />} />
