@@ -6,8 +6,8 @@ export default function CartItem({ item }) {
     <HStack spacing="8">
       <Box w="200px">{item.name}</Box>
       <Box w="40px">{item.quantity}</Box>
-      <Box w="40px">{item.price}</Box>
-      <Box w="40px">{item.points}</Box>
+      <Box w="100px">${item.price.toFixed(2)}</Box>
+      <Box w="100px">{item.points}</Box>
     </HStack>
   );
 }
