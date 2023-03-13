@@ -1,44 +1,91 @@
 import React, { useState } from "react";
-import {Link} from 'react';
+import { Link } from "react";
 import { useMutation } from "@apollo/client";
-// need to create the mutation
 import { LOGIN_USER } from "../utils/mutations";
-import Auth from '../utils/Auth';
+import Auth from "../utils/Auth";
+import {
+  Input,
+  Flex,
+  Heading,
+  Button,
+  FormControl,
+  // FormHelperText,
+  // FormErrorMessage,
+  // FormLabel,
+ 
+} from "@chakra-ui/react";
 
-export default function Login (props) {
-  const[fromState, setFormState] = useState({email:'', password:''});
-  const[Login,{error,data}]= useMutation(LOGIN_USER);
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
-
-  const change =(event)=> {
-    const{name, value} = event.target;
+  const change = (event) => {
+    const { username, value } = event.target;
     setFormState({
-      ...fromState,
-      [name]: value,
+      ...formState,
+      [username]: value,
     });
   };
 
-const submitForm = async (event) =>{
-  event.preventdefault();
-  console.log(fromState);
-  try{
-    const {data}= await Login({
-      variables:{...fromState}
+  const loginUser = async (event) => {
+    event.preventdefault();
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    setFormState({
+      username: "",
+      password: "",
     });
-    Auth.login(data.login.token);
-  }catch (e){
-    console.error(e);
-  }
+  };
 
-  setFormState({
-    email:'',
-    password:'',
-  })
-}
+  return (
+    <Flex height="175vh" alignItems="center" justifyContent="end">
+      <Flex direction="column" background="gray.100" p={10} rounded={5}>
+       
+          <Heading mb={3}>Login</Heading>
+       
+     
 
-
+      <form onSubmit={loginUser}>
+        <FormControl isRequired>
+       
+          <Input
+            placeholder="youremail@email.com"
+            name="username"
+            type="email"
+            bm= {5}
+            value={formState.username}
+            onChange={change}
+          />
+        
+       
+          <Input
+            placeholder="********"
+            name="password"
+            type="password"
+            bm= {5}
+            value={formState.password}
+            onChange={change}
+          />
+        
+       
+          {/* <Link to="/homepage"> */}
+            <Button  mt={4}
+              colorScheme= 'purple'
+              type="submit">Login</Button>
+          {/* </Link> */}
+        
+        </FormControl>
+      </form>
+    </Flex>
+    </Flex>
+  );
 };
 
-
-
-
+export default Login;

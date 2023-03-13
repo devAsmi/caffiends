@@ -22,13 +22,13 @@ import {
 
 
 
-const MemberSignUP = () => {
+const MemberSignUP = (props) => {
   const [formState, setFormState] = useState({
     user: "",
     username: "",
     password: "",
   });
-  
+
  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
@@ -47,7 +47,7 @@ const MemberSignUP = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      Auth.login(data.addProfile.token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -76,13 +76,11 @@ const MemberSignUP = () => {
             placeholder="myemail@email.com"
             mb={5}
             type="email"
-            name="userName"
+            name="username"
             autoComplete="off"
-            value={formState.email}
-            onChange={handleChange}></Input>
-           
-        
-
+            value={formState.username}
+            onChange={handleChange}/>
+          
     
           <Input
             pr="4.5rem"
@@ -97,16 +95,15 @@ const MemberSignUP = () => {
           />
          
         </FormControl>
-
-        <Button
+<Center><Button
           variantColor="darkPurple"
           variant="outline"
-          width="full"
           type="submit"
           mb={5}
         >
           Sign-up
-        </Button>
+        </Button></Center>
+        
 
         <Box >
           <Text> Already a member?</Text>

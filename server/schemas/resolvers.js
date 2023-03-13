@@ -1,7 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Item } = require("../models");
-const {User}= require('../models/User');
-const {signToken} =require ('../utils/Auth')
+const { Item, User } = require("../models");
+const { signToken } = require("../utils/Auth");
 const resolvers = {
   Query: {
     items: async () => Item.find().populate("itemType"),
@@ -9,44 +8,46 @@ const resolvers = {
       (await Item.find().populate("itemType")).filter(
         (item) => item.itemType.name === itemType
       ),
-      users: async () => {
-            return Userfind();
-          },
-        
-          user: async (_parent, { userId }) => {
-            return await User.findOne({ userId: userId });
-          },
-        
-          self: async (parent, args, context) => {
-            if (context.user) {
-              return Profile.findOne({ userId: context.user.id });
-            }
-            throw new AuthenticationError('Please login');
-          },
+    users: async () => {
+      return Userfind();
+    },
+
+    user: async (parent, { userId }) => {
+      return await User.findOne({ userId: userId });
+    },
+
+    self: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ userId: context.user.id });
+      }
+      throw new AuthenticationError("Please login");
+    },
   },
-  
 
   Mutation: {
+    addUser: async(parent, args)=> {
+      const user = await user.create(args);
+      const token = signToken(user);
+      return {token,user};
+    },
 
-    login: async (parent, {email, password }) => {
-      const user = await User.findOne({ email });
+    loginUser: async (parent, { username, password }) => {
+      const user = await User.findOne({username });
 
       if (!user) {
-        throw new AuthenticationError('Please create a membership');
+        throw new AuthenticationError("Please create a membership");
       }
 
       const correctPass = await user.isCorrectPassword(password);
 
       if (!correctPass) {
-        throw new AuthenticationError('Password is not correct!');
+        throw new AuthenticationError("Password is not correct!");
       }
 
       const token = signToken(user);
-      return { token, user}
+      return { token, user };
     },
-  }
-
-  
- };
+  },
+};
 
 module.exports = resolvers;
