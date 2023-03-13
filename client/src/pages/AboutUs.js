@@ -1,4 +1,4 @@
-import { Avatar, Box, Heading, Text, Link, Wrap, WrapItem, Flex, HStack, Card, Stack, CardBody, CardFooter, Button } from "@chakra-ui/react";
+import { Avatar, Box, Heading, Text, Link, Flex, HStack, Card, Stack, CardBody, CardFooter, Button } from "@chakra-ui/react";
 import React from "react";
 
 export default function AboutUs() {
