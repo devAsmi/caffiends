@@ -27,6 +27,30 @@ const typeDefs = gql`
     items: [Item]
     itemsForType(itemType: String): [Item]
   }
+
+  type User{
+    UserId: ID
+    name: String
+    email: String
+    password: String
+  }
+
+  type Auth{
+    token: ID!
+    user:User
+  }
+
+  type Query{
+    users:[User]!
+    user:(userId: ID!): User
+    self: User
+
+  }
+
+  type Mutation {
+    addUser(name: String!, email: String!, passowrd: String!) :Auth
+
+  }
 `;
 
 module.exports = typeDefs;
