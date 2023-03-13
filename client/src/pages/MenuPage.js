@@ -5,6 +5,7 @@ import { Link as ReactLink } from "react-router-dom";
 
 import { QUERY_ITEMS } from "../utils/queries";
 import MenuItemSection from "../components/MenuItemSection";
+import Cart from "../components/Cart";
 
 export default function MenuPage() {
   const { data, loading } = useQuery(QUERY_ITEMS);
@@ -59,6 +60,7 @@ export default function MenuPage() {
           View more..
         </Link>
       </Flex>
+      <Cart />
     </Flex>
   );
 }
