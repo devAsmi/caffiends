@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { ADD_ITEM, DELETE_ITEM } from "./actions";
+import { ADD_ITEM, DELETE_ITEM, TOGGLE_CART_DRAWER } from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +16,11 @@ export const reducer = (state, action) => {
         cartItems: state.cartItems.filter((item) => item._id !== itemToDelete),
       };
 
+    case TOGGLE_CART_DRAWER:
+      return {
+        ...state,
+        showCartDrawer: !state.showCartDrawer,
+      };
     default:
       return state;
   }

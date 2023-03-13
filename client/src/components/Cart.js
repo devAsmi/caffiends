@@ -9,7 +9,7 @@ export default function Cart() {
 
   const [cart, setCart] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
-  const [totalPoint,setTotalPoint] = useState(0);
+  const [totalPoint, setTotalPoint] = useState(0);
 
   useEffect(() => {
     processCartItems();
@@ -23,6 +23,9 @@ export default function Cart() {
       const cartItem = cartItems[i];
       if (cartItem._id in cart) {
         cart[cartItem._id].quantity = cart[cartItem._id].quantity + 1;
+        cart[cartItem._id].price =
+          cart[cartItem._id].quantity * cart[cartItem._id].price;
+          cart[cartItem._id].points = cart[cartItem._id].quantity * cart[cartItem._id].points;
       } else {
         cart[cartItem._id] = {
           name: cartItem.name,
