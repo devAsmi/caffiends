@@ -23,13 +23,9 @@ const typeDefs = gql`
     points: Int
   }
 
-  type Query {
-    items: [Item]
-    itemsForType(itemType: String): [Item]
-  }
 
   type User{
-    UserId: ID
+    userId: ID
     name: String
     email: String
     password: String
@@ -40,15 +36,26 @@ const typeDefs = gql`
     user:User
   }
 
-  type Query{
+  type Query {
+    items: [Item]
+    itemsForType(itemType: String): [Item]
     users:[User]!
-    user:(userId: ID!): User
+    user(userId: ID!): User
     self: User
-
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, passowrd: String!) :Auth
+    addUser(name: String!, email: String!, password: String!) : 
+    Auth updateUser(
+      name:String
+      email:String
+      password: String
+    ):
+    User
+    login(
+      email:String!
+      password:String!
+    ):Auth
 
   }
 `;

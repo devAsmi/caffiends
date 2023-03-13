@@ -28,6 +28,7 @@ const MemberSignUP = () => {
     username: "",
     password: "",
   });
+  
  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
