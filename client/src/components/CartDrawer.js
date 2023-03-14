@@ -24,7 +24,7 @@ export default function CartDrawer() {
       isOpen={showCartDrawer}
       placement="right"
       onClose={onClose}
-      size="md"
+      size="lg"
     >
       <DrawerOverlay />
       <DrawerContent>
