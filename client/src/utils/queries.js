@@ -84,9 +84,9 @@ export const QUERY_ITEMS_FOR_TYPE = gql`
 
 
 export const QUERY_USER = gql`
-query singleUser($userID: ID!){
-  user(userID:$userID){
-    userID
+query singleUser($userId: ID!){
+  user(userId:$userId){
+    userId
     name
     password
   }
@@ -96,8 +96,8 @@ query singleUser($userID: ID!){
 
 export const Query_SELF = gql`
 query self {
-  sefl{
-    userID
+  self{
+    userId
     username
   }
 }`
