@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import { Link as ReactLink } from "react-router-dom";
@@ -8,6 +8,7 @@ import MenuItemSection from "../components/MenuItemSection";
 
 export default function MenuPage() {
   const { data, loading } = useQuery(QUERY_ITEMS);
+
   let menuItems = [];
   let coldBeverages = [];
   let hotBeverages = [];

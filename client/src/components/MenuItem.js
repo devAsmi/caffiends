@@ -10,8 +10,19 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
+import { useCartItemContext } from "../utils/GlobalState";
+import { ADD_ITEM } from "../utils/actions";
 
 export default function MenuItem({ item }) {
+  const [_, dispatch] = useCartItemContext();
+
+  const addItemToCart = () => {
+    dispatch({
+      type: ADD_ITEM,
+      item: item,
+    });
+  };
+
   return (
     <Card maxW="sm" size={"sm"}>
       <CardBody>
@@ -36,7 +47,7 @@ export default function MenuItem({ item }) {
         </Stack>
       </CardBody>
       <CardFooter>
-        <Button variant="outline" colorScheme="blue">
+        <Button variant="outline" colorScheme="blue" onClick={addItemToCart}>
           Add to cart
         </Button>
       </CardFooter>
