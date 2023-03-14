@@ -3,7 +3,7 @@ import { TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
 
 import { Link as ReactLink } from "react-router-dom";
-
+import Auth from "../utils/Auth"
 import {
   Box,
   Badge,
@@ -82,6 +82,21 @@ export default function WithSubnavigation() {
             >
               Caffiends
             </Link>
+            <Button
+            as={"a"}
+            display={{ base: "none", md: "inline-flex" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            color={"white"}
+            bg={"green.400"}
+            href={"registration"}
+            onSubmit={()=> Auth.logout()}
+            _hover={{
+              bg: "green.300",
+            }}
+          >
+           Logout
+          </Button>
           </Heading>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -109,6 +124,7 @@ export default function WithSubnavigation() {
           >
             SignIn / SignUp
           </Button>
+         
         </Stack>
       </Flex>
 
