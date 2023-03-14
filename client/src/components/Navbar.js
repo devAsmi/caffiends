@@ -1,7 +1,7 @@
 import React from "react";
 import { TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
-
+import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
 
 import {
@@ -95,20 +95,44 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
+          <Link
+            fontSize={'sm'}
+            fontWeight={400}
+            variant={'link'}
+            to="/login"
+            as={ReactLink}
+            >
+            Sign In
+          </Link>
+          <Link
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
-            bg={"green.400"}
-            href={"registration"}
+            bg={"teal.400"}
+            to="/registration"
+            as={ReactLink}
             _hover={{
-              bg: "green.300",
+              bg: "teal.300",
             }}
           >
-            SignIn / SignUp
-          </Button>
+            SignUp
+          </Link>
+          <Link
+            display={{ base: "none", md: "inline-flex" }}
+            fontSize={"sm"}
+            fontWeight={600}
+            color={"white"}
+            bg={"teal.400"}
+            to="/logout"
+            as={ReactLink}
+            onSubmit={()=> Auth.logout()}
+            _hover={{
+              bg: "teal.300",
+            }}
+          >
+           Logout
+          </Link>
         </Stack>
       </Flex>
 
