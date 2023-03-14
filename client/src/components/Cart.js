@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
@@ -12,17 +13,42 @@ import {
   AlertIcon,
   Divider,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { useLazyQuery } from "@apollo/client";
 import { useCartItemContext } from "../utils/GlobalState";
+import { QUERY_CHECKOUT } from "../utils/queries";
 import CartItem from "./CartItem";
+
+const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 export default function Cart() {
   const [state] = useCartItemContext();
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   const { cartItems } = state;
 
   const [cart, setCart] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalPoint, setTotalPoint] = useState(0);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
+
+  function submitCheckout() {
+    const itemIds = [];
+
+    state.cartItems.forEach((item) => {
+      itemIds.push(item._id);
+    });
+
+    getCheckout({
+      variables: { items: itemIds, total: totalPrice, points: totalPoint },
+    });
+  }
 
   useEffect(() => {
     const cart = {};
@@ -87,7 +113,11 @@ export default function Cart() {
               Total eligible points: {totalPoint}
             </Text>
           </Box>
-          <Button colorScheme="teal" alignItems="center">
+          <Button
+            colorScheme="teal"
+            alignItems="center"
+            onClick={submitCheckout}
+          >
             CheckOut
           </Button>
         </>

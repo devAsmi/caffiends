@@ -34,71 +34,29 @@ export const QUERY_ITEMS_FOR_TYPE = gql`
   }
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($items: [ID]!, $total: Float, $points: Float) {
+    checkout(items: $items, total: $total, points: $points) {
+      session
+    }
+  }
+`;
 
 export const QUERY_USER = gql`
-query singleUser($userID: ID!){
-  user(userID:$userID){
-    userID
-    name
-    password
+  query singleUser($userID: ID!) {
+    user(userID: $userID) {
+      userID
+      name
+      password
+    }
   }
-}
-`
-;
+`;
 
 export const Query_SELF = gql`
-query self {
-  sefl{
-    userID
-    username
+  query self {
+    sefl {
+      userID
+      username
+    }
   }
-}`
-;
+`;

@@ -1,10 +1,5 @@
 import { useReducer } from "react";
-import {
-  ADD_ITEM,
-  DELETE_ITEM,
-  TOGGLE_CART_DRAWER,
-  UPDATE_QUANTITY,
-} from "./actions";
+import { ADD_ITEM, DELETE_ITEM, TOGGLE_CART_DRAWER } from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
