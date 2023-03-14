@@ -59,6 +59,7 @@ const Login = (props) => {
             placeholder="youremail@email.com"
             name="username"
             type="email"
+            id="username"
             bm= {5}
             value={formState.username}
             onChange={change}
@@ -68,6 +69,7 @@ const Login = (props) => {
           <Input
             placeholder="********"
             name="password"
+            id="password"
             type="password"
             bm= {5}
             value={formState.password}

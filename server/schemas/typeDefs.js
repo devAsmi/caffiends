@@ -34,6 +34,7 @@ const typeDefs = gql`
   type Auth{
     token: ID!
     user:User
+    userID: ID!
   }
 
   type Query {
@@ -55,6 +56,7 @@ const typeDefs = gql`
     loginUser(
       username:String!
       password:String!
+      userID:String!
     ):Auth
 
   }
