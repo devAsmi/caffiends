@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, Flex, Card, Text, Button, Stack } from "@chakra-ui/react"
+import { Flex, Text, Button, Stack } from "@chakra-ui/react"
+import {
+  Editable,
+  EditableInput,
+  EditablePreview,
+} from '@chakra-ui/react'
+
 
 export default function Account() {
   const email = "aguilera.k02@gmail.com"
@@ -10,9 +16,13 @@ export default function Account() {
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
         <Stack spacing="25px" direction="row">
           <Text>Full Name:</Text>
-          <Text>Kayla Teresa Asmita Melissa</Text>          
+          <Editable defaultValue='Click To Edit' border="1px" borderRadius="5px" width="200px" textAlign="center">
+            <EditablePreview />
+            <EditableInput />
+          </Editable>        
         </Stack>
       </Flex>
+
 
       {/* Email */}
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
@@ -22,6 +32,7 @@ export default function Account() {
         </Stack>
       </Flex>
 
+
       {/* Password */}
       <Flex border="2px" p="6" borderRadius="5px" direction="row">
         <Stack spacing="25px" direction="row">
@@ -29,6 +40,7 @@ export default function Account() {
           <Text>***********</Text>          
         </Stack>
       </Flex>
+
 
       {/* Payment Types */}
       <Flex border="2px" p="6" borderRadius="5px" direction="row">
@@ -42,6 +54,7 @@ export default function Account() {
         </Stack>
       </Flex>
 
+
       {/* Delete Your Account */}
       <Flex border="2px" p="6" borderRadius="5px" direction="row" justify="space-evenly" align="center">
         <Text as="b">Not Satisfied With Your Membership?</Text>
@@ -49,6 +62,7 @@ export default function Account() {
         <Button colorScheme="red">Delete Your Account</Button>
       </Flex>
     </Flex>
+
 
   </Flex>
   );

@@ -334,7 +334,7 @@ const NAV_ITEMS = [
     href: "about",
   },
   {
-    label: "Rewards",
-    href: "Rewards",
+    label: "My Account",
+    href: "user",
   },
 ];
