@@ -37,6 +37,7 @@ export default function Cart() {
           cart[cartItem._id].quantity * cartItem.points;
       } else {
         cart[cartItem._id] = {
+          id: cartItem._id,
           name: cartItem.name,
           price: cartItem.price,
           points: cartItem.points,

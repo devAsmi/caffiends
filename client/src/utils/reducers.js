@@ -1,5 +1,10 @@
 import { useReducer } from "react";
-import { ADD_ITEM, DELETE_ITEM, TOGGLE_CART_DRAWER } from "./actions";
+import {
+  ADD_ITEM,
+  DELETE_ITEM,
+  TOGGLE_CART_DRAWER,
+  UPDATE_QUANTITY,
+} from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -10,7 +15,7 @@ export const reducer = (state, action) => {
       };
 
     case DELETE_ITEM:
-      const itemToDelete = action.item._id;
+      const itemToDelete = action.id;
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item._id !== itemToDelete),
