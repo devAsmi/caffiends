@@ -24,9 +24,10 @@ import {
 
 const MemberSignUP = (props) => {
   const [formState, setFormState] = useState({
-    user: "",
+    name: "",
     username: "",
     password: "",
+   
   });
 
  const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -47,7 +48,7 @@ const MemberSignUP = (props) => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      Auth.login(data.addUser.token);
+      Auth.loginUser(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -64,6 +65,7 @@ const MemberSignUP = (props) => {
           <Input
             variant="filled"
             placeholder="Name"
+            id="name"
             mb={5}
             type="text"
             name="name"
@@ -75,6 +77,7 @@ const MemberSignUP = (props) => {
             variant="filled"
             placeholder="myemail@email.com"
             mb={5}
+            id="username"
             type="email"
             name="username"
             autoComplete="off"
@@ -89,7 +92,8 @@ const MemberSignUP = (props) => {
             placeholder="*********"
             name="password"
             id="password"
-            onChange={formState.password}
+            value ={formState.password}
+            onChange={handleChange}
             required
            
           />

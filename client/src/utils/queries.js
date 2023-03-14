@@ -43,9 +43,9 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_USER = gql`
-  query singleUser($userID: ID!) {
-    user(userID: $userID) {
-      userID
+  query singleUser($userId: ID!) {
+    user(userId: $userId) {
+      userId
       name
       password
     }
@@ -54,8 +54,8 @@ export const QUERY_USER = gql`
 
 export const Query_SELF = gql`
   query self {
-    sefl {
-      userID
+    self {
+      userId
       username
     }
   }

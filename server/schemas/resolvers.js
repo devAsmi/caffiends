@@ -66,7 +66,7 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await user.create(args);
+      const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
@@ -78,7 +78,7 @@ const resolvers = {
         throw new AuthenticationError("Please create a membership");
       }
 
-      const correctPass = await user.isCorrectPassword(password);
+      const correctPass = await User.isCorrectPassword(password);
 
       if (!correctPass) {
         throw new AuthenticationError("Password is not correct!");
