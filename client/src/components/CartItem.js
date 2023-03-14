@@ -1,13 +1,4 @@
-import {
-  Box,
-  HStack,
-  IconButton,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-} from "@chakra-ui/react";
+import { Box, HStack, IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import React from "react";
 import { useCartItemContext } from "../utils/GlobalState";
