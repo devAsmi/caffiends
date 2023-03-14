@@ -63,6 +63,7 @@ function App() {
               <Route path="/registration" element={<Registration />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/user" element={<UserInfo />} />
+                <Route path ="login" element={<Login/>}/>
             </Routes>
             <Footer />
             <CartDrawer />
