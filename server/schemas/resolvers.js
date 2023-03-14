@@ -25,15 +25,15 @@ const resolvers = {
       const { items } = await order.populate("items");
 
       for (let i = 0; i < items.length; i++) {
-        const item = await stripe.items.create({
+        const item = await stripe.products.create({
           name: items[i].name,
           description: items[i].description,
-          image: items[i].image,
+          images: [items[i].image],
         });
 
         const price = await stripe.prices.create({
-          product: item._id,
-          unit_amount: items[i].price,
+          product: item.id,
+          unit_amount: items[i].price * 100,
           currency: "usd",
         });
 
@@ -50,7 +50,6 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
-
       return { session: session.id };
     },
     user: async (parent, { userId }) => {
