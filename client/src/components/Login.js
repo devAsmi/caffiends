@@ -20,10 +20,10 @@ const Login = (props) => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const change = (event) => {
-    const { username, value } = event.target;
+    const { name, value } = event.target;
     setFormState({
       ...formState,
-      [username]: value,
+      [name]: value,
     });
   };
 
