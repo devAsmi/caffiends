@@ -1,5 +1,5 @@
-import React from "react";
-import { TOGGLE_CART_DRAWER } from "../utils/actions";
+import React, { useEffect, useState } from "react";
+import { ADD_ITEM, POPULATE_CART, TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
 import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
@@ -32,8 +32,28 @@ import {
   BellIcon,
 } from "@chakra-ui/icons";
 
+import { idbPromise } from "../utils/helpers";
+
+function getTotalCartItems(cart) {
+  let totalCartItems = 0;
+  Object.values(cart).forEach((item) => {
+    totalCartItems = totalCartItems + item.quantity;
+  });
+  return totalCartItems;
+}
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const [_, dispatch] = useCartItemContext();
+
+  useEffect(() => {
+    idbPromise("cart", "get").then((items) => {
+      dispatch({
+        type: POPULATE_CART,
+        items: items,
+      });
+    });
+  }, []);
 
   return (
     <Box>
@@ -96,12 +116,12 @@ export default function Navbar() {
           spacing={6}
         >
           <Link
-            fontSize={'sm'}
+            fontSize={"sm"}
             fontWeight={400}
-            variant={'link'}
+            variant={"link"}
             to="/login"
             as={ReactLink}
-            >
+          >
             Sign In
           </Link>
           <Link
@@ -126,12 +146,12 @@ export default function Navbar() {
             bg={"teal.400"}
             to="/logout"
             as={ReactLink}
-            onSubmit={()=> Auth.logout()}
+            onSubmit={() => Auth.logout()}
             _hover={{
               bg: "teal.300",
             }}
           >
-           Logout
+            Logout
           </Link>
         </Stack>
       </Flex>
@@ -149,7 +169,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   const [state, dispatch] = useCartItemContext();
-  const { cartItems } = state;
+  const { cart } = state;
 
   function toggleDrawer() {
     dispatch({
@@ -212,7 +232,7 @@ const DesktopNav = () => {
       >
         View cart{" "}
         <Badge fontSize="1em" colorScheme="teal" borderRadius={"50"}>
-          {cartItems.length}
+          {getTotalCartItems(cart)}
         </Badge>
       </Link>
     </Stack>
@@ -259,7 +279,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 
 const MobileNav = () => {
   const [state] = useCartItemContext();
-  const { cartItems } = state;
+  const { cart } = state;
 
   return (
     <Stack
@@ -274,7 +294,7 @@ const MobileNav = () => {
       <HStack>
         <MobileNavItem key="Cart" label={"Cart"} href="cart" />
         <Badge fontSize="1em" colorScheme="teal" borderRadius={"50"}>
-          {cartItems.length}
+          {getTotalCartItems(cart)}
         </Badge>
       </HStack>
     </Stack>

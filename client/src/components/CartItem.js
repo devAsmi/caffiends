@@ -2,18 +2,15 @@ import { Box, HStack, IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import React from "react";
 import { useCartItemContext } from "../utils/GlobalState";
-import { DELETE_ITEM } from "../utils/actions";
+import { DELETE_ITEM, DELETE_ITEM_CART } from "../utils/actions";
+import { idbPromise } from "../utils/helpers";
 
 export default function CartItem({ item }) {
   const [_, dispatch] = useCartItemContext();
 
-  function handleNumChange(e) {
-    console.log("num changes", e);
-  }
-
   function deleteItem() {
     dispatch({
-      type: DELETE_ITEM,
+      type: DELETE_ITEM_CART,
       id: item.id,
     });
   }
