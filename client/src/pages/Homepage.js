@@ -3,7 +3,7 @@ import { Image, Wrap, Box, Flex, Text, Heading } from "@chakra-ui/react";
 export default function Homepage() {
   return (
     <Flex
-      bg="orange.400"
+      bgGradient='linear(to-r, teal.200, teal.400)'
       direction="column"
       gap="2"
       justifyContent="center"

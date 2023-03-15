@@ -12,7 +12,7 @@ export default function Welcome() {
 
         <Box>
         <Text fontSize="3xl" mt="9" ml="2">Referral Code</Text>
-        <Flex borderWidth="4px" width="300px" height="80px" justifyContent="center" alignItems="center" borderStyle="dashed" m="2" borderColor="#DD6B20">
+        <Flex borderWidth="4px" width="300px" height="80px" justifyContent="center" alignItems="center" borderStyle="dashed" m="2" borderColor="#826e9b">
           <Text fontSize="2xl" as="b">J3Q1mNI2Lz</Text>
         </Flex>
         </Box>

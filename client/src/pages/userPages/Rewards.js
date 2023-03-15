@@ -18,7 +18,7 @@ export default function Rewards() {
 
 
         <Box>
-          <CircularProgress value={40} size="200px" color="#DD6B20"/>
+          <CircularProgress value={40} size="200px" color="#d7c0d0"/>
         </Box>
       </Flex>
 
@@ -29,8 +29,8 @@ export default function Rewards() {
       <Flex alignItems="center" direction="column">
         <Text fontSize="4xl" mt="5">Available Rewards</Text>
         <Flex direction="column">
-          <Button mt="2" colorScheme="green">Free Coffee</Button>
-          <Button mt="2" colorScheme="green">Free Coffee</Button>
+          <Button mt="2" bgColor="#826e9b" color="white">Free Coffee</Button>
+          <Button mt="2" bgColor="#826e9b" color="white">Free Coffee</Button>
         </Flex>
       </Flex>
     </Flex>

@@ -56,14 +56,11 @@ export default function Navbar() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
+        bgGradient='linear(to-r, teal.200, teal.400)'
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
         alignItems={"center"}
       >
         <Flex
@@ -131,7 +128,7 @@ export default function Navbar() {
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
-              bg={"teal.400"}
+              bg={"#826e9b"}
               to="/registration"
               as={ReactLink}
               _hover={{
@@ -147,7 +144,7 @@ export default function Navbar() {
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
-              bg={"teal.400"}
+              bg={"#826e9b"}
               to="/logout"
               as={ReactLink}
               onSubmit={() => Auth.logout()}
