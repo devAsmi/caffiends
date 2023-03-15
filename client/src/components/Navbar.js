@@ -82,21 +82,6 @@ export default function WithSubnavigation() {
             >
               Caffiends
             </Link>
-            <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"green.400"}
-            href={"registration"}
-            onSubmit={()=> Auth.logout()}
-            _hover={{
-              bg: "green.300",
-            }}
-          >
-           Logout
-          </Button>
           </Heading>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
