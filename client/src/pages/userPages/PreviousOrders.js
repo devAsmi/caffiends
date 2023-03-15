@@ -1,8 +1,10 @@
 import { Flex, Box, Card, Text, Input, Button, Stack } from "@chakra-ui/react";
 import React from "react";
+import POCard from "../../components/POCard"
 
 
 export default function PreviousOrders(self) {
+  const historyArray = self.self.orderHistory
   return (
     <Flex height="600px" width="full"mt="10">
       <Box border="2px" width="40%" m="3" textAlign="center">
@@ -29,18 +31,9 @@ export default function PreviousOrders(self) {
       <Box border="2px" width="60%" m="3" textAlign="center">
         <Text fontSize="4xl">Order History</Text>
         <Stack p="4">
-          <Box fontSize="2xl" mt="4" borderBottom="2px" p="3">
-            <Text>Fake Order 1</Text>
-            <Text>Total: $43.27</Text>
-            <Text>Points Earned: 4300</Text>
-          </Box>
-
-
-          <Box fontSize="2xl" mt="4" borderBottom="2px" p="3">
-            <Text>Fake Order 2</Text>
-            <Text>Total: $25.87</Text>
-            <Text>Points Earned: 2600</Text>
-          </Box>
+        {historyArray.map((order) => (
+            <POCard order={order}/>
+          ))}
         </Stack>
       </Box>
     </Flex>
