@@ -34,6 +34,10 @@ const typeDefs = gql`
     user: User
   }
 
+  type Checkout {
+    session: ID
+  }
+
   type Query {
     items: [Item]
     itemsForType(itemType: String): [Item]

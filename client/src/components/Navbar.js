@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
-import {
-  ADD_ITEM,
-  POPULATE_CART,
-  POPULATE_TO_CART,
-  TOGGLE_CART_DRAWER,
-} from "../utils/actions";
+import React, { useEffect } from "react";
+import { POPULATE_TO_CART, TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
-import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
-import Auth from "../utils/Auth"
+import Auth from "../utils/Auth";
 import {
   Box,
   Badge,
@@ -120,52 +114,50 @@ export default function Navbar() {
           spacing={6}
         >
           <Link>
-          <Button
-            mt={3}
-            fontSize={'sm'}
-            fontWeight={500}
-            variant={'link'}
-            to="/login"
-            as={ReactLink}
-          >
-            Sign In
-          </Button>
+            <Button
+              mt={3}
+              fontSize={"sm"}
+              fontWeight={500}
+              variant={"link"}
+              to="/login"
+              as={ReactLink}
+            >
+              Sign In
+            </Button>
           </Link>
           <Link>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"teal.400"}
-            to="/registration"
-            as={ReactLink}
-            _hover={{
-              bg: "teal.300",
-            }}
-          >
-            Sign Up
-          </Button>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"teal.400"}
+              to="/registration"
+              as={ReactLink}
+              _hover={{
+                bg: "teal.300",
+              }}
+            >
+              Sign Up
+            </Button>
           </Link>
           <Link>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"teal.400"}
-            to="/logout"
-            as={ReactLink}
-            onSubmit={() => Auth.logout()}
-            _hover={{
-              bg: "teal.300",
-            }}
-          >
-           Logout
-          </Button>
-
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"teal.400"}
+              to="/logout"
+              as={ReactLink}
+              onSubmit={() => Auth.logout()}
+              _hover={{
+                bg: "teal.300",
+              }}
+            >
+              Logout
+            </Button>
           </Link>
-
         </Stack>
       </Flex>
 
