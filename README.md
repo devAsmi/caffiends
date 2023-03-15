@@ -24,7 +24,7 @@
 
  
   ## License
- https://opensource.org/licenses/MIT)
+ https://opensource.org/licenses/MIT
  
   ## Contributes
   
@@ -35,7 +35,8 @@
 
  
  ## Links
-     https://caffiends.herokuapp.com/
+ 
+  https://caffiends.herokuapp.com
  
  ## Images
   
