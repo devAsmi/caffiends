@@ -40,7 +40,7 @@ export default function MenuPage() {
   }
 
   return (
-    <Flex direction="column" gap="8" padding="4">
+    <Flex direction="column" gap="8" padding="4" bgGradient='linear(to-r, teal.200, teal.400)'>
       <Text fontSize="6xl">Menu</Text>
       <Flex alignItems="center" gap="8">
         <MenuItemSection name="Cold Beverages" items={coldBeverages} />

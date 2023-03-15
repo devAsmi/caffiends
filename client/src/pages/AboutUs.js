@@ -3,20 +3,20 @@ import React from "react";
 
 export default function AboutUs() {
   return (
-    <Flex bg="#FEEBC8" alignItems="center" justifyContent="center" direction="column">
+    <Flex bgGradient='linear(to-r, teal.200, teal.400)' alignItems="center" justifyContent="center" direction="column">
     {/* Thanks for visiting */}
       <Heading m="3">
         Thanks for Visiting Our Shop!
       </Heading>
 
       <HStack m="3" gap="5">
-        <Link color='#DD6B20' href='#Team'>
+        <Link color='#826e9b' href='#Team'>
           Our Team
         </Link>
-        <Link color='#DD6B20' href='#Inspiration'>
+        <Link color='#826e9b' href='#Inspiration'>
           Our Inspiration
         </Link>
-        <Link color='#DD6B20' href='#Future'>
+        <Link color='#826e9b' href='#Future'>
           Future Goals
         </Link>        
       </HStack>
@@ -30,7 +30,8 @@ export default function AboutUs() {
         </div>
 
         <Flex direction="column" justifyContent="center">
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Stack>
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Avatar size='xl' name='Asmita Pokhrel' src='https://devasmi.github.io/portfolio/IMG-0438.jpg'/>
             <Stack width="700px" ml="3">
               <CardBody>
@@ -42,14 +43,14 @@ export default function AboutUs() {
               </CardBody>
 
               <CardFooter>
-                <Button variant='solid' colorScheme='green'>
+                <Button variant='solid' bgColor='#826e9b' color="white">
                   <Link href="https://github.com/devAsmi" target="_blank">GitHub</Link>
                 </Button>
               </CardFooter>
             </Stack>
           </Card>
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Avatar size='xl' name='Melissa Gillen' src='https://stamperm.github.io/gillen_portfolio/melissa.jpg' />
             <Stack width="700px" ml="3">
               <CardBody>
@@ -61,14 +62,14 @@ export default function AboutUs() {
               </CardBody>
 
               <CardFooter>
-                <Button variant='solid' colorScheme='green'>
+                <Button variant='solid' bgColor='#826e9b' color="white">
                   <Link href="https://github.com/StamperM" target="_blank">GitHub</Link>
                 </Button>
               </CardFooter>
             </Stack>
           </Card>
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Avatar size='xl' name='Teresa Rodriguez' src='https://avatars.githubusercontent.com/u/120215479?v=4' />
             <Stack width="700px" ml="3">
               <CardBody>
@@ -80,14 +81,14 @@ export default function AboutUs() {
               </CardBody>
 
               <CardFooter>
-                <Button variant='solid' colorScheme='green'>
+                <Button variant='solid' bgColor='#826e9b' color="white">
                   <Link href="https://github.com/teresarod11" target="_blank">GitHub</Link>
                 </Button>
               </CardFooter>
             </Stack>
           </Card>
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Avatar size='xl' name='Kayla Aguilera' src='https://avatars.githubusercontent.com/u/118678899?v=4' />
             <Stack width="700px" ml="3">
               <CardBody>
@@ -99,12 +100,14 @@ export default function AboutUs() {
               </CardBody>
 
               <CardFooter>
-                <Button variant='solid' colorScheme='green'>
+                <Button variant='solid' bgColor='#826e9b' color="white">
                   <Link href="https://github.com/kaguilera23" target="_blank">GitHub</Link>
                 </Button>
               </CardFooter>
             </Stack>
           </Card>
+          </Stack>
+
         </Flex>
       </Box>
 
@@ -117,7 +120,7 @@ export default function AboutUs() {
         </div>
 
         <Flex direction="column" justifyContent="center">
-          <Box direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Box direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Text m="3">
               Whether it's a lazy Sunday, a busy week with your full-time coding bootcamp, or just a regular day that needs a little pick-me-up, I think everyone is a little bit of a caff-fiend at heart. There's nothing like holding a warm cup of joe on a cold, rainy day, and, alternatively, holding a cold, iced coffe or smoothie on a blazing, sunny day. Whatever the reason may be, we wanted an application where we could display all of our delicious treats and drinks in an appealing, simple manner, so that all your focus is on your cravings rather than trying to navigate the website.
             </Text>
@@ -138,7 +141,7 @@ export default function AboutUs() {
         </div>
 
         <Flex direction="column" justifyContent="center">
-          <Box direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#FEEBC8" justifyContent="center" alignItems="center" width="1100px">
+          <Box direction={{ base: 'column', sm: 'row' }} overflow="hidden" bg="#D7C0D0" justifyContent="center" alignItems="center" width="1100px">
             <Text m="3">
             We hope, in the future, we can help you turn your points into discounts.
             </Text>

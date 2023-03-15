@@ -8,7 +8,7 @@ export default function PreviousOrders() {
       <Box border="2px" width="40%" m="3" textAlign="center">
         <Text fontSize="4xl">Forget to Login Before Ordering?</Text>
         <Text fontSize="2xl">If you're missing points from your account, fill out the form to submit a new order to your history!</Text>
-        <Card m="3" height="50%" justify="space-around" p="4" bgColor="#ffe3b0">
+        <Card m="3" height="50%" justify="space-around" p="4" bgColor="#d7c0d0">
           <Box>
             <Text as="b">Order Total</Text>
             <Input variant='outline' border="2px"/>
@@ -21,7 +21,7 @@ export default function PreviousOrders() {
           </Box>
 
 
-          <Button colorScheme="green">Submit</Button>
+          <Button bgColor="#826e9b" color="white">Submit</Button>
         </Card>
       </Box>
 
