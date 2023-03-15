@@ -19,8 +19,8 @@
   
   
   ## Usage 
-Run npm i
-Run npm develop
+  `npm i`
+  `npm run develop`
 
  
   ## License
