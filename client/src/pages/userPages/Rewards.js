@@ -17,7 +17,6 @@ export default function Rewards(self) {
   }
 
   let totalPointsTwo = totalPoints;
-  console.log(totalPointsTwo)
   return (
     <Flex direction="column" height="600px" width="full" border="1px" borderRadius="5px" mt="10">
       <Text fontSize="5xl" alignSelf="center" mt="8">For every 10,000 Points Earned, You'll Get a Free Coffee!</Text>
