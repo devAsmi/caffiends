@@ -17,16 +17,18 @@ const typeDefs = gql`
   }
 
   type History {
-    history_id: ID
+    _id: ID
     items: [Item]
-    total: Int
+    total: Float
     points: Int
+    orderDate: String
   }
 
   type User {
     userId: ID
     name: String
     username: String
+    orderHistory: [History]
   }
 
   type Auth {
@@ -51,6 +53,12 @@ const typeDefs = gql`
     addUser(name: String!, username: String!, password: String!): Auth
     updateUser(name: String, username: String, password: String): User
     loginUser(username: String!, password: String!): Auth
+    createOrder(
+      orderDate: String!
+      points: Int!
+      total: Float
+      items: [ID]!
+    ): History
   }
 `;
 
