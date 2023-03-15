@@ -13,6 +13,29 @@ export const ADD_USER = gql`
   }
 `;
 
+export const CREATE_ORDER = gql`
+  mutation createOrder(
+    $items: [ID]!
+    $orderDate: String
+    $points: Int
+    $total: Float
+  ) {
+    createOrder(
+      items: $items
+      orderDate: $orderDate
+      points: $points
+      total: $total
+    ) {
+      orderDate
+      points
+      items {
+        name
+        _id
+      }
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation loginUser($username: String!, $password: String!) {
     loginUser(username: $username, password: $password) {

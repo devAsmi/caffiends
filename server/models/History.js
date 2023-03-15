@@ -11,11 +11,11 @@ const historySchema = new Schema({
     type: Number,
     required: true,
   },
-  history_id: {
-    type: Schema.Types.ObjectId,
-  },
   points: {
     type: Number,
+  },
+  orderDate: {
+    type: String,
   },
 });
 

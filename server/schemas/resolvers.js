@@ -89,6 +89,16 @@ const resolvers = {
       console.log(token);
       return { token, user };
     },
+    createOrder: async (parent, { orderDate, points, total, items }) => {
+      const order = await History.create({
+        orderDate: orderDate,
+        points: points,
+        total: total,
+        items: items,
+      });
+      console.log(order);
+      return await order.populate("items");
+    },
   },
 };
 
