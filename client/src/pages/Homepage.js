@@ -1,9 +1,23 @@
-import React from "react";
-import { Image, Wrap, Box, Flex, Text, Heading } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Image, Flex, Text, Heading } from "@chakra-ui/react";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function Homepage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // using heroku, if we route back to /success, it would not work as there is no such route
+  // so we first load the app using home page and if we need to go to success page
+  // because we are redirected by stripe, we need to tell react app to go to that page
+  useEffect(() => {
+    if (location.search.includes("session_id")) {
+      const redirectUrl = `/success${location.search}`;
+      navigate(redirectUrl);
+    }
+  }, []);
+
   return (
     <Flex
-      bgGradient='linear(to-r, teal.200, teal.400)'
+      bgGradient="linear(to-r, teal.200, teal.400)"
       direction="column"
       gap="2"
       justifyContent="center"
