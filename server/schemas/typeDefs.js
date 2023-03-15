@@ -28,6 +28,8 @@ const typeDefs = gql`
     userId: ID
     name: String
     username: String
+    points: Int
+    referralCode: String
     orderHistory: [History]
   }
 
@@ -51,7 +53,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(name: String!, username: String!, password: String!): Auth
-    updateUser(name: String, username: String, password: String): User
+    updateUser(name: String, username: String, password: String, points: Int): User
     loginUser(username: String!, password: String!): Auth
     createOrder(
       orderDate: String!

@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, Button, Stack } from "@chakra-ui/react"
+import { Flex, Text, Button, Stack, Link } from "@chakra-ui/react"
 import {
   Editable,
   EditableInput,
@@ -7,8 +7,8 @@ import {
 } from '@chakra-ui/react'
 
 
-export default function Account() {
-  const email = "aguilera.k02@gmail.com"
+export default function Account(users) {
+  console.log(users)
   return (
   <Flex direction="column" height="600px" width="full" mt="10">
     <Flex m="5" direction="column" height="full" justify="space-around" fontSize="2xl">
@@ -16,7 +16,7 @@ export default function Account() {
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
         <Stack spacing="25px" direction="row">
           <Text>Full Name:</Text>
-          <Editable defaultValue='Click To Edit' border="1px" borderRadius="5px" width="200px" textAlign="center">
+          <Editable defaultValue={users.users[7].name} border="1px" borderRadius="5px" width="200px" textAlign="center">
             <EditablePreview />
             <EditableInput />
           </Editable>        
@@ -28,17 +28,14 @@ export default function Account() {
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
         <Stack spacing="25px" direction="row">
           <Text>Email:</Text>
-          <Text>{email}</Text>          
+          <Text>{users.users[7].username}</Text>          
         </Stack>
       </Flex>
 
 
       {/* Password */}
       <Flex border="2px" p="6" borderRadius="5px" direction="row">
-        <Stack spacing="25px" direction="row">
-          <Text>Password:</Text>
-          <Text>***********</Text>          
-        </Stack>
+        <Link>Change Your Password</Link>
       </Flex>
 
 

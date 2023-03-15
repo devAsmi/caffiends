@@ -23,7 +23,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
-  points: { type: Number },
+  points: Number,
+  referralCode: String,
+
   // order history can only include the id of the history that we can populate
   // later so that we do not store the same information multiple places
   orderHistory: [

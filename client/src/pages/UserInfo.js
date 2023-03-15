@@ -4,25 +4,32 @@ import Welcome from "./userPages/Welcome"
 import Rewards from "./userPages/Rewards"
 import Account from "./userPages/Account"
 import PreviousOrders from "./userPages/PreviousOrders"
+import { useQuery } from "@apollo/client"
+import { QUERY_USERS } from "../utils/queries"
 
 export default function UserInfo() {
+  const { loading, data } = useQuery(QUERY_USERS);
+  const users = data?.users;
+  
   const [currentPage, setCurrentPage] = useState("Welcome")
 
-  const renderPage = () => {
+  const renderPage = (users) => {
     if (currentPage === 'Rewards') {
-      return <Rewards />;
+      return <Rewards users={users}/>;
     }
     if (currentPage === 'Account') {
-      return <Account />;
+      return <Account users={users} />;
     }
     if (currentPage === 'PreviousOrders') {
-      return <PreviousOrders />;
+      return <PreviousOrders users={users} />;
     }
-    return <Welcome />;
+    return <Welcome users={users} />;
   };
 
+
+
   return (
-    <Box bgGradient='linear(to-r, teal.200, teal.400)'>
+    <Box bgGradient='linear(to-r, teal.200, teal.400)' padding="2">
       {/* Hi User Section */}
       <Flex justifyContent={"center"} alignItems={"center"}>
         <Avatar size='2xl' src='https://devasmi.github.io/porfolio/IMG-0438.jpg' bg="#d7c0d0"/>
@@ -51,7 +58,9 @@ export default function UserInfo() {
 
       {/* Rendered Page Section */}
       <Box>
-        {renderPage()}
+        {
+          loading ? (<div>Loading...</div>) : (renderPage(users))
+        }
       </Box>
     </Box>
   );

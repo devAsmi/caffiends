@@ -2,6 +2,8 @@ const { AuthenticationError } = require("apollo-server-express");
 const { Item, User, History } = require("../models");
 const { signToken } = require("../utils/Auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const randomstring = require("randomstring");
+
 
 const resolvers = {
   Query: {
@@ -72,7 +74,15 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       console.log("LINE 29 RESOLVERS", args);
-      const user = await User.create(args);
+      const user = await User.create(
+        {
+          name: args.name,
+          username: args.username,
+          password: args.password,
+          points: 0,
+          referralCode: randomstring.generate(10)
+        }
+      );
       const token = signToken(user);
       return { token, user };
     },
