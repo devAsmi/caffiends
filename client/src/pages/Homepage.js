@@ -60,7 +60,7 @@ export default function Homepage() {
         />
       </Flex>
       <Heading size="4xl">Caffiends</Heading>
-      <Text fontSize="2xl">At your service for your caffiene needs!</Text>
+      <Text fontSize="2xl">At your service for your caffeine needs!</Text>
     </Flex>
   );
 }
