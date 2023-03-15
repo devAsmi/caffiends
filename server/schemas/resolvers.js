@@ -64,7 +64,7 @@ const resolvers = {
     },
     self: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ userId: context.user.id });
+        return User.findOne({ userId: context.user.userId }).populate("orderHistory");
       }
       throw new AuthenticationError("Please login");
     },

@@ -5,25 +5,25 @@ import Rewards from "./userPages/Rewards"
 import Account from "./userPages/Account"
 import PreviousOrders from "./userPages/PreviousOrders"
 import { useQuery } from "@apollo/client"
-import { QUERY_USERS } from "../utils/queries"
+import { QUERY_SELF } from "../utils/queries"
 
 export default function UserInfo() {
-  const { loading, data } = useQuery(QUERY_USERS);
-  const users = data?.users;
+  const { loading, data } = useQuery(QUERY_SELF);
+  const self = data?.self;
   
   const [currentPage, setCurrentPage] = useState("Welcome")
 
-  const renderPage = (users) => {
+  const renderPage = (self) => {
     if (currentPage === 'Rewards') {
-      return <Rewards users={users}/>;
+      return <Rewards self={self}/>;
     }
     if (currentPage === 'Account') {
-      return <Account users={users} />;
+      return <Account self={self} />;
     }
     if (currentPage === 'PreviousOrders') {
-      return <PreviousOrders users={users} />;
+      return <PreviousOrders self={self} />;
     }
-    return <Welcome users={users} />;
+    return <Welcome self={self} />;
   };
 
 
@@ -59,7 +59,7 @@ export default function UserInfo() {
       {/* Rendered Page Section */}
       <Box>
         {
-          loading ? (<div>Loading...</div>) : (renderPage(users))
+          loading ? (<div>Loading...</div>) : (renderPage(self))
         }
       </Box>
     </Box>
