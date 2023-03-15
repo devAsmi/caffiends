@@ -3,7 +3,7 @@ import { TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
 import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
-
+import Auth from "../utils/Auth"
 import {
   Box,
   Badge,
@@ -138,8 +138,9 @@ export default function Navbar() {
           >
            Logout
           </Button>
+
           </Link>
-          
+
         </Stack>
       </Flex>
 

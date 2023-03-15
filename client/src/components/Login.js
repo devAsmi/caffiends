@@ -9,6 +9,7 @@ import {
   Heading,
   Button,
   FormControl,
+  Center
   // FormHelperText,
   // FormErrorMessage,
   // FormLabel,
@@ -27,13 +28,17 @@ const Login = (props) => {
     });
   };
 
-  const loginUser = async (event) => {
-    event.preventdefault();
+  const logUserIn = async (event) => {
+    event.preventDefault();
     try {
-      const { data } = await login({
+      const { data, err } = await login({
         variables: { ...formState },
       });
-      Auth.login(data.login.token);
+      if(err){
+        console.log(error)
+      }
+      console.log(data)
+      Auth.loginUser(data.loginUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -45,14 +50,16 @@ const Login = (props) => {
   };
 
   return (
-    <Flex height="175vh" alignItems="center" justifyContent="end">
+    <Flex height="150vh" alignItems="center" justifyContent="center">
       <Flex direction="column" background="gray.100" p={10} rounded={5}>
-       
-          <Heading mb={3}>Login</Heading>
-       
+       <Center>
+       <Heading mb={3}>Login</Heading>
+       </Center>
+          
+  
      
 
-      <form onSubmit={loginUser}>
+      <form onSubmit={logUserIn}>
         <FormControl isRequired>
        
           <Input
@@ -76,12 +83,10 @@ const Login = (props) => {
             onChange={change}
           />
         
-       
-          {/* <Link to="/homepage"> */}
             <Button  mt={4}
               colorScheme= 'purple'
               type="submit">Login</Button>
-          {/* </Link> */}
+        
         
         </FormControl>
       </form>
