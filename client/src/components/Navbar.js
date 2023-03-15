@@ -31,6 +31,7 @@ import {
 } from "@chakra-ui/icons";
 
 import { idbPromise } from "../utils/helpers";
+import Homepage from "../pages/Homepage";
 
 function getTotalCartItems(cart) {
   let totalCartItems = 0;
@@ -43,7 +44,10 @@ function getTotalCartItems(cart) {
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const [_, dispatch] = useCartItemContext();
-
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   useEffect(() => {
     idbPromise("cart", "get").then((items) => {
       dispatch({
@@ -110,6 +114,28 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
+          {Auth.loggedIn() ? (
+            <>
+          <Link>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"#826e9b"}
+              to="/logout"
+              as={ReactLink}
+              onClick={logout}
+              _hover={{
+                bg: "teal.300",
+              }}
+            >
+              Logout
+            </Button>
+          </Link>
+          </>
+          ) : (
+            <>
           <Link>
             <Button
               mt={3}
@@ -138,30 +164,16 @@ export default function Navbar() {
               Sign Up
             </Button>
           </Link>
-          <Link>
-            <Button
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"#826e9b"}
-              to="/logout"
-              as={ReactLink}
-              onSubmit={() => Auth.logout()}
-              _hover={{
-                bg: "teal.300",
-              }}
-            >
-              Logout
-            </Button>
-          </Link>
+          </>
+          )}
         </Stack>
       </Flex>
-
+      
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
     </Box>
+    
   );
 }
 
