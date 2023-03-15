@@ -11,7 +11,7 @@ const resolvers = {
         (item) => item.itemType.name === itemType
       ),
     users: async () => {
-      return Userfind();
+      return User.find();
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
@@ -65,25 +65,28 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
+      console.log("LINE 29 RESOLVERS", args);
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
 
     loginUser: async (parent, { username, password }) => {
-      const user = await User.findOne({ username });
+      console.log("LINE 36 RESOLVERS", username, password);
+      const user = await User.findOne({ username: username });
 
       if (!user) {
         throw new AuthenticationError("Please create a membership");
       }
 
-      const correctPass = await User.isCorrectPassword(password);
+      const correctPass = await user.isCorrectPassword(password);
 
+      console.log(user);
       if (!correctPass) {
         throw new AuthenticationError("Password is not correct!");
       }
-
       const token = signToken(user);
+      console.log(token);
       return { token, user };
     },
   },

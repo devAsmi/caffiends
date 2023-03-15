@@ -8,7 +8,7 @@ import {
 import { useCartItemContext } from "../utils/GlobalState";
 import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
-
+import Auth from "../utils/Auth"
 import {
   Box,
   Badge,
@@ -34,7 +34,6 @@ import {
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  BellIcon,
 } from "@chakra-ui/icons";
 
 import { idbPromise } from "../utils/helpers";
@@ -120,16 +119,20 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Link
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
+          <Link>
+          <Button
+            mt={3}
+            fontSize={'sm'}
+            fontWeight={500}
+            variant={'link'}
             to="/login"
             as={ReactLink}
           >
             Sign In
+          </Button>
           </Link>
-          <Link
+          <Link>
+          <Button
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
@@ -141,9 +144,11 @@ export default function Navbar() {
               bg: "teal.300",
             }}
           >
-            SignUp
+            Sign Up
+          </Button>
           </Link>
-          <Link
+          <Link>
+          <Button
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
@@ -156,8 +161,11 @@ export default function Navbar() {
               bg: "teal.300",
             }}
           >
-            Logout
+           Logout
+          </Button>
+
           </Link>
+
         </Stack>
       </Flex>
 
@@ -253,13 +261,13 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       as={ReactLink}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("teal.50", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
+            _groupHover={{ color: "teal.400" }}
             fontWeight={500}
           >
             {label}
@@ -275,7 +283,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           align={"center"}
           flex={1}
         >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={"teal.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Link>

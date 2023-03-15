@@ -23,21 +23,15 @@ const typeDefs = gql`
     points: Int
   }
 
-  type Checkout {
-    session: ID
-  }
-
   type User {
     userId: ID
     name: String
     username: String
-    password: String
   }
 
   type Auth {
     token: ID!
     user: User
-    userID: ID!
   }
 
   type Query {
@@ -52,7 +46,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(name: String!, username: String!, password: String!): Auth
     updateUser(name: String, username: String, password: String): User
-    loginUser(username: String!, password: String!, userID: String!): Auth
+    loginUser(username: String!, password: String!): Auth
   }
 `;
 
