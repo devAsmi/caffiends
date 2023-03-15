@@ -62,7 +62,7 @@ export default function Cart() {
     for (let i = 0; i < cartItems.length; i++) {
       const cartItem = cartItems[i];
       localCart[cartItem._id] = {
-        id: cartItem._id,
+        _id: cartItem._id,
         name: cartItem.name,
         price: cartItem.price * cartItem.quantity,
         points: cartItem.points * cartItem.quantity,

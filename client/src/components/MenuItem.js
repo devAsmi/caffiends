@@ -19,6 +19,11 @@ export default function MenuItem({ item }) {
   const { cart } = state;
 
   const addItemToCart = () => {
+    let quantity = 1;
+    if (item._id in cart) {
+      quantity = cart[item._id].quantity + 1;
+    }
+    idbPromise("cart", "put", { ...item, quantity: quantity });
     dispatch({
       type: ADD_ITEM_CART,
       item: item,

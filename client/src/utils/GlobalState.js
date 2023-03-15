@@ -6,7 +6,6 @@ const { Provider } = ItemContext;
 
 const CartProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useItemReducer({
-    cartItems: [],
     cart: {},
     showCartDrawer: false,
   });

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ADD_ITEM, POPULATE_CART, TOGGLE_CART_DRAWER } from "../utils/actions";
+import {
+  ADD_ITEM,
+  POPULATE_CART,
+  POPULATE_TO_CART,
+  TOGGLE_CART_DRAWER,
+} from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
 import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
@@ -49,7 +54,7 @@ export default function Navbar() {
   useEffect(() => {
     idbPromise("cart", "get").then((items) => {
       dispatch({
-        type: POPULATE_CART,
+        type: POPULATE_TO_CART,
         items: items,
       });
     });

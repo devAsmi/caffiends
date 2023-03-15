@@ -1,35 +1,13 @@
 import { useReducer } from "react";
 import {
-  ADD_ITEM,
   ADD_ITEM_CART,
-  DELETE_ITEM,
   DELETE_ITEM_CART,
-  POPULATE_CART,
   POPULATE_TO_CART,
   TOGGLE_CART_DRAWER,
 } from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case ADD_ITEM:
-      return {
-        ...state,
-        cartItems: [...state.cartItems, action.item],
-      };
-
-    case POPULATE_CART:
-      return {
-        ...state,
-        cartItems: [...state.cartItems, ...action.items],
-      };
-
-    case DELETE_ITEM:
-      const itemToDelete = action.id;
-      return {
-        ...state,
-        cartItems: state.cartItems.filter((item) => item._id !== itemToDelete),
-      };
-
     case ADD_ITEM_CART:
       const key = action.item._id;
       return {
