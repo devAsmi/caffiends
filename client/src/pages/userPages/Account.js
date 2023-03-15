@@ -7,8 +7,8 @@ import {
 } from '@chakra-ui/react'
 
 
-export default function Account(users) {
-  console.log(users)
+export default function Account(self) {
+  console.log(self)
   return (
   <Flex direction="column" height="600px" width="full" mt="10">
     <Flex m="5" direction="column" height="full" justify="space-around" fontSize="2xl">
@@ -16,7 +16,7 @@ export default function Account(users) {
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
         <Stack spacing="25px" direction="row">
           <Text>Full Name:</Text>
-          <Editable defaultValue={users.users[7].name} border="1px" borderRadius="5px" width="200px" textAlign="center">
+          <Editable defaultValue={self.self.name} border="1px" borderRadius="5px" width="200px" textAlign="center">
             <EditablePreview />
             <EditableInput />
           </Editable>        
@@ -28,7 +28,7 @@ export default function Account(users) {
       <Flex border="2px" borderRadius="5px" p="6" direction="row">
         <Stack spacing="25px" direction="row">
           <Text>Email:</Text>
-          <Text>{users.users[7].username}</Text>          
+          <Text>{self.self.username}</Text>          
         </Stack>
       </Flex>
 

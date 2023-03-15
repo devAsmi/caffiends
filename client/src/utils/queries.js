@@ -52,9 +52,17 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const Query_SELF = gql`
-  query self {
+export const QUERY_SELF = gql`
+  query Self {
     self {
+      name
+      orderHistory {
+        points
+        total
+        orderDate
+      }
+      points
+      referralCode
       userId
       username
     }
