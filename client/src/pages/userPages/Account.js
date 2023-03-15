@@ -8,7 +8,6 @@ import {
 
 
 export default function Account(self) {
-  console.log(self)
   return (
   <Flex direction="column" height="600px" width="full" mt="10">
     <Flex m="5" direction="column" height="full" justify="space-around" fontSize="2xl">
