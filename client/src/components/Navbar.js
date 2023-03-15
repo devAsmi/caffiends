@@ -1,9 +1,8 @@
-import React from "react";
-import { TOGGLE_CART_DRAWER } from "../utils/actions";
+import React, { useEffect } from "react";
+import { POPULATE_TO_CART, TOGGLE_CART_DRAWER } from "../utils/actions";
 import { useCartItemContext } from "../utils/GlobalState";
-import Auth from "../utils/Auth";
 import { Link as ReactLink } from "react-router-dom";
-import Auth from "../utils/Auth"
+import Auth from "../utils/Auth";
 import {
   Box,
   Badge,
@@ -31,8 +30,28 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
+import { idbPromise } from "../utils/helpers";
+
+function getTotalCartItems(cart) {
+  let totalCartItems = 0;
+  Object.values(cart).forEach((item) => {
+    totalCartItems = totalCartItems + item.quantity;
+  });
+  return totalCartItems;
+}
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const [_, dispatch] = useCartItemContext();
+
+  useEffect(() => {
+    idbPromise("cart", "get").then((items) => {
+      dispatch({
+        type: POPULATE_TO_CART,
+        items: items,
+      });
+    });
+  }, []);
 
   return (
     <Box>
@@ -95,52 +114,50 @@ export default function Navbar() {
           spacing={6}
         >
           <Link>
-          <Button
-            mt={3}
-            fontSize={'sm'}
-            fontWeight={500}
-            variant={'link'}
-            to="/login"
-            as={ReactLink}
+            <Button
+              mt={3}
+              fontSize={"sm"}
+              fontWeight={500}
+              variant={"link"}
+              to="/login"
+              as={ReactLink}
             >
-            Sign In
-          </Button>
+              Sign In
+            </Button>
           </Link>
           <Link>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"teal.400"}
-            to="/registration"
-            as={ReactLink}
-            _hover={{
-              bg: "teal.300",
-            }}
-          >
-            Sign Up
-          </Button>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"teal.400"}
+              to="/registration"
+              as={ReactLink}
+              _hover={{
+                bg: "teal.300",
+              }}
+            >
+              Sign Up
+            </Button>
           </Link>
           <Link>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"teal.400"}
-            to="/logout"
-            as={ReactLink}
-            onSubmit={()=> Auth.logout()}
-            _hover={{
-              bg: "teal.300",
-            }}
-          >
-           Logout
-          </Button>
-
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"teal.400"}
+              to="/logout"
+              as={ReactLink}
+              onSubmit={() => Auth.logout()}
+              _hover={{
+                bg: "teal.300",
+              }}
+            >
+              Logout
+            </Button>
           </Link>
-
         </Stack>
       </Flex>
 
@@ -157,7 +174,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   const [state, dispatch] = useCartItemContext();
-  const { cartItems } = state;
+  const { cart } = state;
 
   function toggleDrawer() {
     dispatch({
@@ -220,7 +237,7 @@ const DesktopNav = () => {
       >
         View cart{" "}
         <Badge fontSize="1em" colorScheme="teal" borderRadius={"50"}>
-          {cartItems.length}
+          {getTotalCartItems(cart)}
         </Badge>
       </Link>
     </Stack>
@@ -267,7 +284,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 
 const MobileNav = () => {
   const [state] = useCartItemContext();
-  const { cartItems } = state;
+  const { cart } = state;
 
   return (
     <Stack
@@ -282,7 +299,7 @@ const MobileNav = () => {
       <HStack>
         <MobileNavItem key="Cart" label={"Cart"} href="cart" />
         <Badge fontSize="1em" colorScheme="teal" borderRadius={"50"}>
-          {cartItems.length}
+          {getTotalCartItems(cart)}
         </Badge>
       </HStack>
     </Stack>

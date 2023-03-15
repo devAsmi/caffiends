@@ -3,8 +3,8 @@ const { Schema, model } = require("mongoose");
 const historySchema = new Schema({
   items: [
     {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "MenuItem",
     },
   ],
   total: {

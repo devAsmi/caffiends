@@ -27,13 +27,15 @@ const typeDefs = gql`
     userId: ID
     name: String
     username: String
-   
   }
 
   type Auth {
     token: ID!
     user: User
-    
+  }
+
+  type Checkout {
+    session: ID
   }
 
   type Query {
@@ -42,6 +44,7 @@ const typeDefs = gql`
     users: [User]!
     user(userId: ID!): User
     self: User
+    checkout(items: [ID]!, total: Float, points: Float): Checkout
   }
 
   type Mutation {

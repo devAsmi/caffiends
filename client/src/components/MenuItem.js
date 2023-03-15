@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
@@ -11,14 +11,21 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useCartItemContext } from "../utils/GlobalState";
-import { ADD_ITEM } from "../utils/actions";
+import { ADD_ITEM_CART } from "../utils/actions";
+import { idbPromise } from "../utils/helpers";
 
 export default function MenuItem({ item }) {
-  const [_, dispatch] = useCartItemContext();
+  const [state, dispatch] = useCartItemContext();
+  const { cart } = state;
 
   const addItemToCart = () => {
+    let quantity = 1;
+    if (item._id in cart) {
+      quantity = cart[item._id].quantity + 1;
+    }
+    idbPromise("cart", "put", { ...item, quantity: quantity });
     dispatch({
-      type: ADD_ITEM,
+      type: ADD_ITEM_CART,
       item: item,
     });
   };
