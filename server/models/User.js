@@ -25,6 +25,7 @@ const userSchema = new Schema({
   },
   points: Number,
   referralCode: String,
+
   // order history can only include the id of the history that we can populate
   // later so that we do not store the same information multiple places
   orderHistory: [
@@ -43,7 +44,7 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
-userSchema.methods.isCorrectPassword = async function(password){
+userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 

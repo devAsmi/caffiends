@@ -13,7 +13,10 @@ const resolvers = {
         (item) => item.itemType.name === itemType
       ),
     users: async () => {
-      return User.find();
+      return User.find().populate("orderHistory").populate({
+        path: "orderHistory",
+        populate: "items",
+      });
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
@@ -55,7 +58,10 @@ const resolvers = {
       return { session: session.id };
     },
     user: async (parent, { userId }) => {
-      return await User.findOne({ userId: userId });
+      return await User.findOne({ userId: userId }).populate({
+        path: "orderHistory",
+        populate: "items",
+      });
     },
     self: async (parent, args, context) => {
       if (context.user) {
@@ -98,6 +104,31 @@ const resolvers = {
       const token = signToken(user);
       console.log(token);
       return { token, user };
+    },
+    createOrder: async (
+      parent,
+      { orderDate, points, total, items },
+      context
+    ) => {
+      const order = await History.create({
+        orderDate: orderDate,
+        points: points,
+        total: total,
+        items: items,
+      });
+
+      // if we have userId for the order, we need to update User collection too
+      if (context.user) {
+        const userData = await User.findOneAndUpdate(
+          { userId: context.user.userId },
+          {
+            $push: { orderHistory: order._id },
+          },
+          { new: true }
+        );
+      }
+
+      return await order.populate("items");
     },
   },
 };
