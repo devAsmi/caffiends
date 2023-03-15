@@ -2,7 +2,7 @@ import { Flex, Box, Card, Text, Input, Button, Stack } from "@chakra-ui/react";
 import React from "react";
 
 
-export default function PreviousOrders() {
+export default function PreviousOrders(users) {
   return (
     <Flex height="600px" width="full"mt="10">
       <Box border="2px" width="40%" m="3" textAlign="center">

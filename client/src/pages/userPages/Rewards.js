@@ -4,7 +4,7 @@ import { Box, Text, Divider, Flex, CircularProgress, Button } from "@chakra-ui/r
 
 
 
-export default function Rewards() {
+export default function Rewards(users) {
   return (
     <Flex direction="column" height="600px" width="full" border="1px" borderRadius="5px" mt="10">
       <Text fontSize="5xl" alignSelf="center" mt="8">For every 10,000 Points Earned, You'll Get a Free Coffee!</Text>
@@ -13,12 +13,12 @@ export default function Rewards() {
       <Flex direction="row" p="8" justifyContent="center" alignItems="center">
         <Box textAlign="center">
           <Text fontSize="4xl" px="10">Total Points</Text>
-          <Text fontSize="4xl" px="10">800</Text>
+          <Text fontSize="4xl" px="10">{users.users[7].points}</Text>
         </Box>
 
 
         <Box>
-          <CircularProgress value={40} size="200px" color="#d7c0d0"/>
+          <CircularProgress value={users.users[7].points} max="10000" size="200px" color="#d7c0d0"/>
         </Box>
       </Flex>
 

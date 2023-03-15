@@ -40,7 +40,8 @@ const Login = (props) => {
       console.log(data)
       Auth.loginUser(data.loginUser.token);
     } catch (e) {
-      console.error(e);
+      window.alert(e)
+       
     }
 
     setFormState({

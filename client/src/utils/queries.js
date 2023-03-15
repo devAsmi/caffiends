@@ -60,3 +60,19 @@ export const Query_SELF = gql`
     }
   }
 `;
+
+export const QUERY_USERS = gql `
+  query Users {
+    users {
+      name
+      orderHistory {
+        points
+        total
+      }
+      points
+      referralCode
+      userId
+      username
+    }
+  }
+`;
