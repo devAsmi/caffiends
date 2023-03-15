@@ -16,9 +16,9 @@ export const ADD_USER = gql`
 export const CREATE_ORDER = gql`
   mutation createOrder(
     $items: [ID]!
-    $orderDate: String
-    $points: Int
-    $total: Float
+    $orderDate: String!
+    $points: Int!
+    $total: Float!
   ) {
     createOrder(
       items: $items
@@ -28,8 +28,8 @@ export const CREATE_ORDER = gql`
     ) {
       orderDate
       points
+      _id
       items {
-        name
         _id
       }
     }

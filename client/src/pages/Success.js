@@ -3,8 +3,9 @@ import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../utils/mutations";
 import { idbPromise } from "../utils/helpers";
 import { Flex } from "@chakra-ui/react";
-function Success() {
-  const [addOrder] = useMutation(CREATE_ORDER);
+
+export default function Success() {
+  const [createOrder] = useMutation(CREATE_ORDER);
 
   useEffect(() => {
     async function saveOrder() {
@@ -25,10 +26,8 @@ function Success() {
       });
       const orderDate = new Date().toLocaleString().toString();
 
-      console.log("total", totalPrice, totalPoints);
-
       if (items.length) {
-        const { data } = await addOrder({
+        const { data } = await createOrder({
           variables: {
             items,
             orderDate: orderDate,
@@ -36,6 +35,7 @@ function Success() {
             points: totalPoints,
           },
         });
+
         const itemsData = data.createOrder.items;
 
         itemsData.forEach((item) => {
@@ -49,7 +49,7 @@ function Success() {
     }
 
     saveOrder();
-  }, [addOrder]);
+  }, [createOrder]);
 
   return (
     <>
@@ -67,5 +67,3 @@ function Success() {
     </>
   );
 }
-
-export default Success;
