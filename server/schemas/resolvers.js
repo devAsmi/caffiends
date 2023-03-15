@@ -4,7 +4,6 @@ const { signToken } = require("../utils/Auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const randomstring = require("randomstring");
 
-
 const resolvers = {
   Query: {
     items: async () => Item.find().populate("itemType"),
@@ -52,7 +51,7 @@ const resolvers = {
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${url}/?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
       return { session: session.id };
@@ -74,15 +73,13 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       console.log("LINE 29 RESOLVERS", args);
-      const user = await User.create(
-        {
-          name: args.name,
-          username: args.username,
-          password: args.password,
-          points: 0,
-          referralCode: randomstring.generate(10)
-        }
-      );
+      const user = await User.create({
+        name: args.name,
+        username: args.username,
+        password: args.password,
+        points: 0,
+        referralCode: randomstring.generate(10),
+      });
       const token = signToken(user);
       return { token, user };
     },
